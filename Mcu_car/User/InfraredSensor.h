@@ -7,7 +7,7 @@
 
 
 void InfSensor_Init(void);
-int encounterObstaclesLeft();
-int encounterObstaclesRight();
+int encounterObstaclesLeft(void);
+int encounterObstaclesRight(void);
 
 #endif

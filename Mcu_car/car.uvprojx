@@ -46,7 +46,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\</OutputDirectory>
+          <OutputDirectory>.\Objects\</OutputDirectory>
           <OutputName>car</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
@@ -719,39 +719,39 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
               <FileName>InfraredSensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\InfraredSensor.c</FilePath>
+              <FilePath>.\User\InfraredSensor.c</FilePath>
             </File>
             <File>
               <FileName>InfraredSensor.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\InfraredSensor.h</FilePath>
+              <FilePath>.\User\InfraredSensor.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
               <FileName>move.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\move.c</FilePath>
+              <FilePath>.\User\move.c</FilePath>
             </File>
             <File>
               <FileName>move.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\move.h</FilePath>
+              <FilePath>.\User\move.h</FilePath>
             </File>
             <File>
               <FileName>wait.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\wait.c</FilePath>
+              <FilePath>.\User\wait.c</FilePath>
             </File>
             <File>
               <FileName>wait.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\wait.h</FilePath>
+              <FilePath>.\User\wait.h</FilePath>
             </File>
           </Files>
         </Group>
