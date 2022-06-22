@@ -11,6 +11,8 @@ void turnLeft(int, int,int);
 void turnRight(int, int,int);
 void backoff(int,int);
 void spinInPlace(int time, int left);
+void stop(void);
+
 void Moto_Init(void);
 
 #endif
