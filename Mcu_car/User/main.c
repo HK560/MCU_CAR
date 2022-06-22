@@ -6,28 +6,40 @@
 #include "stm32f10x_gpio.h"
 #include "system.h"
 #include "trackingTrack.h"
+#include "usart.h"
 
-/*�Զ����ʼ������*/
+/*?????????????*/
 /**
- * @description: �Զ����ʼ������
+ * @description: ?????????????
  * @return {*}
  */
 void myInit(void) {
-    Moto_Init();  //�����ʼ��
+    Moto_Init();  //????????
     SysTick_Init(72);
     InfSensor_Init();
 }
 
 int main(void) {
     myInit();
-    forward(0,1);
-    while (1) {
-        if(allcheck())continue;
-        if (Fellow_Left_mid()) continue;
-        if (Fellow_Right_mid()) continue;
-        if (Fellow_Left()) continue;
+    USART1_init();
+    // forward(0,0);
+    while (1)
 
-        if (Fellow_Right()) continue;
-        forward(0,1);
+    {   
+        // //  forward(0,0);
+        //  turnRight(0,1,0);
+        if (data == '0') {
+            forward(0,0);
+        }
+        if (data == '1') {
+            turnLeft(0,1,0);
+        }
+        if (data == '2') {
+            turnRight(0,1,0);
+        }
+        if (data == '3') {
+            stop();
+        }
     }
+
 }
