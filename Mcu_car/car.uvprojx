@@ -753,6 +753,16 @@
               <FileType>5</FileType>
               <FilePath>.\User\wait.h</FilePath>
             </File>
+            <File>
+              <FileName>trackingTrack.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\trackingTrack.c</FilePath>
+            </File>
+            <File>
+              <FileName>trackingTrack.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\trackingTrack.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -7,5 +7,5 @@
  */
 void wait(int time){
     int i= 0;
-    for(;i<500000*time;i++);
+    for(;i<1000*time;i++);
 }

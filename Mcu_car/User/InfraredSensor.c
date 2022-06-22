@@ -24,7 +24,7 @@ void InfSensor_Init() {
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;  // pa11
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    forward(0);//前进
+    forward(0,1);//前进
 }
 
 /**
@@ -33,8 +33,8 @@ void InfSensor_Init() {
  */
 int encounterObstaclesLeft() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_10) == 0) {
-        turnLeft(5, 0);
-        forward(0);
+        turnLeft(5, 0,1);
+        forward(0,1);
         return 1;
     }
     return 0;
@@ -46,8 +46,8 @@ int encounterObstaclesLeft() {
  */
 int encounterObstaclesRight() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 0) {
-        turnRight(5, 0);
-        forward(0);
+        turnRight(5, 0,1);
+        forward(0,1);
         return 1;
     }
     return 0;

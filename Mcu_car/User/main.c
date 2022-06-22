@@ -1,29 +1,33 @@
 
+#include "InfraredSensor.h"
 #include "SysTick.h"
+#include "move.h"
 #include "stm32f10x.h"
 #include "stm32f10x_gpio.h"
 #include "system.h"
+#include "trackingTrack.h"
 
-#include "move.h"
-#include "InfraredSensor.h"
-
-/*×Ô¶¨Òå³õÊ¼»¯º¯Êý*/
+/*ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 /**
- * @description: ×Ô¶¨Òå³õÊ¼»¯º¯Êý
+ * @description: ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @return {*}
  */
 void myInit(void) {
-    Moto_Init();       //µç»ú³õÊ¼»¯
+    Moto_Init();  //ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
     SysTick_Init(72);
     InfSensor_Init();
-    }
+}
 
 int main(void) {
     myInit();
-
+    forward(0,1);
     while (1) {
-        if(!encounterObstaclesLeft()){
-            encounterObstaclesRight();
-        }
+        if(allcheck())continue;
+        if (Fellow_Left_mid()) continue;
+        if (Fellow_Right_mid()) continue;
+        if (Fellow_Left()) continue;
+
+        if (Fellow_Right()) continue;
+        forward(0,1);
     }
 }
