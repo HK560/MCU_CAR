@@ -7,7 +7,7 @@
 #include "system.h"
 
 void forward(int,int);  //前进的函数声明
-void turnLeft(int, int,int);
+void turnLeft(int, int,int); 
 void turnRight(int, int,int);
 void backoff(int,int);
 void spinInPlace(int time, int left);

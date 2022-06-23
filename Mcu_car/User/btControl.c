@@ -2,12 +2,21 @@
 
 #include "move.h"
 
+/**
+ * @brief 初始化蓝牙控制
+ * @description: 
+ * @return {*}
+ */
 void btControlInit() { USART1_init(); }
 
+/**
+ * @brief 蓝牙简单控制电机 
+ * @description: 
+ * @return {*}
+ */
 void btControl() {
     if (data == '0') {
         forward(0, 0);
-        // data = ""
     }
     if (data == '1') {
         turnLeft(0, 1, 0);
@@ -22,7 +31,4 @@ void btControl() {
         data == '03' ) {
         stop();
     }
-    // if(data == '5') {
-    //     return;
-    // }
 }

@@ -11,9 +11,9 @@
 #include "ultrasonic.h"
 #include "delay.h"
 
-/*?????????????*/
+
 /**
- * @description: ?????????????
+ * @brief 自定义初始化函数
  * @return {*}
  */
 void myInit(void) {
@@ -33,15 +33,10 @@ int main(void) {
     
     while (1)
     {   
-        btControl();
-        InfraredSensor();
-        trackingTrack();
-        ultrasonic();
+        btControl();//蓝牙控制方向
+        InfraredSensor();//避障检测
+        trackingTrack();//循迹
+        ultrasonic();//超声波检测
 
     }
-    // while(1){
-
-
-    // }
-
 }

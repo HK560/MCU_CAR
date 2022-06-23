@@ -2,12 +2,13 @@
 #include "move.h"
 
 #include "wait.h"
-/*
-@function name : forward
-@description  : 小车前进
-@args : int time —— 前进时间 int stop 是否停止,!=0停止
-@returns : null
-*/
+/**
+ * @brief 前进
+ * @description: 
+ * @param {int} time 执行时间
+ * @param {int} stop 是否停止电机
+ * @return {*}
+ */
 void forward(int time,int stop) {
     /*前进*/
     GPIO_SetBits(GPIOB, GPIO_Pin_5);  //电机供电
@@ -24,12 +25,14 @@ void forward(int time,int stop) {
     }
 }
 
-/*
-@function name : turnLeft
-@description  :  小车左转
-@args : int time —— 前进时间 int stop 是否停止,!=0停止
-@returns : null
-*/
+/**
+ * @brief 左转
+ * @description: 
+ * @param {int} time 执行时间
+ * @param {int} forward 是否前进
+ * @param {int} stop 是否停止电机
+ * @return {*}
+ */
 void turnLeft(int time, int forward,int stop) {
     /*左转*/
     GPIO_SetBits(GPIOB, GPIO_Pin_5);  //电机供电
@@ -55,13 +58,15 @@ void turnLeft(int time, int forward,int stop) {
 }
 // 67 左边， 89右边
 
-/*
-@function name : turnRight
-@description  :  小车右转
-@args : int time —— 前进时间 int stop 是否停止,!=0停止
-@returns : null
-*/
 
+/**
+ * @brief 右转
+ * @description: 
+ * @param {int} time 执行时间
+ * @param {int} forward 是否前进
+ * @param {int} stop 是否停止电机
+ * @return {*}
+ */
 void turnRight(int time, int forward, int stop) {
     /*右转*/
     GPIO_SetBits(GPIOB, GPIO_Pin_5);  //电机供电
@@ -84,14 +89,9 @@ void turnRight(int time, int forward, int stop) {
     }
 }
 
-/*
-@function name : backoff
-@description  :  小车后退
-@args : int time —— 前进时间 int stop 是否停止,!=0停止
-@returns : null
-*/
+
 /**
- * @description: 小车后退
+ * @brief 小车后退
  * @param {int} time
  * @param {int} stop
  * @return {*}
@@ -112,16 +112,12 @@ void backoff(int time,int stop) {
     }
 }
 
-/*
-@function name : spinInPlace
-@description  : 原地 旋转
-@args : time —— 时间 left —— 是否左转
-@returns : null
-*/
+
 /**
+ * @brief 原地旋转
  * @description: 
- * @param {int} time
- * @param {int} left
+ * @param {int} time 执行时间
+ * @param {int} left 是否向左，否则向右
  * @return {*}
  */
 void spinInPlace(int time, int left) {
@@ -145,14 +141,10 @@ void spinInPlace(int time, int left) {
     }
 }
 
-/*
-@function name : Moto_Init
-@description  :GPIO 引脚初始化
-@args :void
-@returns : null
-*/
+
 /**
- * @description: GPIO 引脚初始化
+ * @brief GPIO 引脚初始化
+ * @description: 
  * @return {*}
  */
 void Moto_Init(void) {
@@ -174,14 +166,9 @@ void Moto_Init(void) {
     GPIO_ResetBits(
         GPIOB, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
 }
-/* 
-@function name : stop 小车停下
-@description  : 停止电机供电并且等待一段时间
-@args : 
-@returns : 
-*/
 /**
- * @description: stop 小车停下
+ * @brief 小车停止
+ * @description: 
  * @return {*}
  */
 void stop() {

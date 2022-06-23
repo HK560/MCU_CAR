@@ -4,7 +4,7 @@
 
 int state;
 /**
- * @description: 循迹红外传感器初始化
+ * @brief 循迹红外传感器初始化
  * @return {*}
  */
 void Follow_InfSensor_Init() {
@@ -30,15 +30,13 @@ void Follow_InfSensor_Init() {
 
 // x1-15 x2-14 x3-13 x3-12
 /**
- * @description: 检测左侧出线 判断是否右拐
+ * @brief 检测左侧出线 判断是否右拐
  * @return {int}
  */
 int Fellow_Right() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) {
         stop();
-        // turnRight(10, 0);
         turnLeft(20, 1, 0);
-        // forward(0);
         state = 1;
         return 1;
     }
@@ -46,15 +44,13 @@ int Fellow_Right() {
 }
 
 /**
- * @description: 检测右侧出线 判断是否左拐
+ * @brief 检测右侧出线 判断是否左拐
  * @return {int} 0为无障碍 1为遇到障碍
  */
 int Fellow_Left() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_15) == 1) {
-        stop();
-        // turnLeft(10,0);
+        stop();               
         turnRight(20, 1, 0);
-        // forward(0);
         state = 2;
         return 1;
     }
@@ -62,31 +58,26 @@ int Fellow_Left() {
 }
 
 /**
- * @description: 检测左侧出线 判断是否右拐
+ * @brief 检测左侧出线 判断是否右拐
  * @return {int} 0为无障碍 1为遇到障碍
  */
 int Fellow_Right_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13) == 0) {
         stop();
-
         turnRight(20, 1, 0);
-        // forward(0);
-        // state =2;
         return 1;
     }
     return 0;
 }
 
 /**
- * @description: 检测右侧出线 判断是否左拐
+ * @brief 检测右侧出线 判断是否左拐
  * @return {int} 0为无障碍 1为遇到障碍
  */
 int Fellow_Left_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14) == 0) {
         stop();
         turnLeft(20, 1, 0);
-        // forward(0);
-        // state =1;
         return 1;
     }
     return 0;
@@ -103,40 +94,23 @@ int allcheck() {
 }
 
 /**
- * @description: put it into while(1)
+ * @brief 循迹主函数
+ * @description: 
  * @return {*}
  */
 void trackingTrack() {
-    if (data == '5') {
+    if (data == '5') {//data作为功能识别
         state = 0;
         forward(0, 0);
         while (data == '5') {
-            if (allcheck()) {
-                // switch (state) {
-                //     case 1:
-                //         /* code */
-                //         turnRight(10, 1, 0);
-                //         break;
-                //     case 2:
-                //         turnLeft(10, 1, 0);
-                //         break;
-                //     default:
-                //         forward(0, 0);
-                //         break;
-                // }
-                // // continue;
+            if (allcheck()) {//完全出轨状态
                 backoff(500,0);
             } else {
-                if (Fellow_Left()) continue;
+                if (Fellow_Left()) continue; 
                 if (Fellow_Right()) continue;
                 if (Fellow_Left_mid()) continue;
                 if (Fellow_Right_mid()) continue;
-
                 forward(0, 0);
-                // wait(8);
-                // GPIO_ResetBits(GPIOB, GPIO_Pin_5);
-                // // stop();
-                // wait(8);
             }
         }
     }

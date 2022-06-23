@@ -49,30 +49,16 @@ u32 get_distance(void) {
 
     return i * 3;
 }
+
+/**
+ * @brief 超声波主函数
+ * @description: 
+ * @return {*}
+ */
 void ultrasonic() {
     if (data =='7') {
         u32 distance = 0;  //用于接收超声波距离
         NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);  //选择中断分组
-        // delay_init();       //系统时钟的初始化
-        // Moto_Init();        //电机初始化
-        // USART1_init();      //串口1初始化
-        // ultrasonic_init();  //超声波初始化
-
-        /*前进*/
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_5);//电机供电
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_6);//M2+
-        //	GPIO_ResetBits(GPIOB, GPIO_Pin_7);//M2-
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_8);//M1+
-        //	GPIO_ResetBits(GPIOB, GPIO_Pin_9);//M1-
-
-        /*后退*/
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_5);//电机供电
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_7);//M2+ 左电机
-        //	GPIO_ResetBits(GPIOB, GPIO_Pin_6);//M2- 左电机
-        //	GPIO_SetBits(GPIOB, GPIO_Pin_9);//M1+ 右电机
-
-        //	GPIO_ResetBits(GPIOB, GPIO_Pin_8);//M1- 右电机
-
         /*停止*/
         GPIO_ResetBits(GPIOB, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 |
                                   GPIO_Pin_8 | GPIO_Pin_9);
@@ -86,9 +72,6 @@ void ultrasonic() {
             if (distance >= 200) {
                 forward(0, 0);
             } else {
-                /*停止*/
-                // GPIO_ResetBits(GPIOB, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 |
-                //                           GPIO_Pin_8 | GPIO_Pin_9);
                 backoff(500,0);
                 spinInPlace(750,1);
             }

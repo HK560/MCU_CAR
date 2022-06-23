@@ -6,7 +6,7 @@
 #include "wait.h"
 #include "delay.h"
 /**
- * @description: 红外传感器初始化
+ * @brief 红外传感器初始化
  * @return {*}
  */
 void InfSensor_Init() {
@@ -30,7 +30,7 @@ void InfSensor_Init() {
 }
 
 /**
- * @description: 检测左障碍 判断是否拐弯
+ * @brief 检测左障碍 判断是否拐弯
  * @return {int} 0为无障碍 1为遇到障碍
  */
 int encounterObstaclesLeft() {
@@ -42,9 +42,11 @@ int encounterObstaclesLeft() {
     return 0;
 }
 
+
 /**
- * @description: 检测右障碍 判断是否拐弯
- * @return {int} 0为无障碍 1为遇到障碍
+ * @brief 检测右障碍 判断是否拐弯
+ * @description 111
+ * @return {int}
  */
 int encounterObstaclesRight() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 0) {
@@ -56,6 +58,7 @@ int encounterObstaclesRight() {
 }
 
 /**
+ * @brief 传感器+超声波避障主函数
  * @description: put into while
  * @return {*}
  */
