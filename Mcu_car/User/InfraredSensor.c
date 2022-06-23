@@ -2,6 +2,7 @@
 
 #include "move.h"
 #include "wait.h"
+#include "usart.h"
 
 /**
  * @description: 红外传感器初始化
@@ -24,7 +25,7 @@ void InfSensor_Init() {
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;  // pa11
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    forward(0,1);//前进
+    forward(0, 1);  //前进
 }
 
 /**
@@ -33,8 +34,8 @@ void InfSensor_Init() {
  */
 int encounterObstaclesLeft() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_10) == 0) {
-        turnLeft(5, 0,1);
-        forward(0,1);
+        turnLeft(5, 0, 1);
+        forward(0, 1);
         return 1;
     }
     return 0;
@@ -46,9 +47,22 @@ int encounterObstaclesLeft() {
  */
 int encounterObstaclesRight() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 0) {
-        turnRight(5, 0,1);
-        forward(0,1);
+        turnRight(5, 0, 1);
+        forward(0, 1);
         return 1;
     }
     return 0;
+}
+
+/**
+ * @description: put into while
+ * @return {*}
+ */
+void InfraredSensor() {
+    if (data == '6') {
+        forward(0,0);
+        if (!encounterObstaclesLeft()) {
+            encounterObstaclesRight();
+        }
+    }
 }

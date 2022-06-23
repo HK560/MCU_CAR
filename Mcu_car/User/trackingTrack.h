@@ -13,4 +13,8 @@ int Fellow_Right_mid(void);
 int Fellow_Left_mid(void);
 void stop(void);
 int allcheck(void);
+void trackingTrack(void);
+
+extern int state;
+
 #endif

@@ -18,16 +18,19 @@ void myInit(void) {
     Moto_Init();  //????????
     SysTick_Init(72);
     InfSensor_Init();
+    Follow_InfSensor_Init();
     btControlInit();
+    data = '4';
 }
 
 int main(void) {
     myInit();
     
     while (1)
-
     {   
         btControl();
+        InfraredSensor();
+        trackingTrack();
     }
 
 }

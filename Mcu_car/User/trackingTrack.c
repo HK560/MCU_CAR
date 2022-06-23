@@ -1,4 +1,8 @@
 #include "trackingTrack.h"
+
+#include "usart.h"
+
+int state;
 /**
  * @description: 循迹红外传感器初始化
  * @return {*}
@@ -27,14 +31,15 @@ void Follow_InfSensor_Init() {
 // x1-15 x2-14 x3-13 x3-12
 /**
  * @description: 检测左侧出线 判断是否右拐
- * @return {int} 0为无障碍 1为遇到障碍
+ * @return {int}
  */
 int Fellow_Right() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) {
         stop();
         // turnRight(10, 0);
-        turnLeft(100, 1,0);
+        turnLeft(10, 1, 0);
         // forward(0);
+        state = 1;
         return 1;
     }
     return 0;
@@ -48,8 +53,9 @@ int Fellow_Left() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_15) == 1) {
         stop();
         // turnLeft(10,0);
-        turnRight(100, 1,0);
+        turnRight(10, 1, 0);
         // forward(0);
+        state = 2;
         return 1;
     }
     return 0;
@@ -63,8 +69,9 @@ int Fellow_Right_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13) == 0) {
         stop();
 
-        turnRight(100, 1,0);
+        turnRight(10, 1, 0);
         // forward(0);
+        // state =2;
         return 1;
     }
     return 0;
@@ -77,8 +84,9 @@ int Fellow_Right_mid() {
 int Fellow_Left_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14) == 0) {
         stop();
-        turnLeft(100, 1,0);
+        turnLeft(10, 1, 0);
         // forward(0);
+        // state =1;
         return 1;
     }
     return 0;
@@ -89,5 +97,47 @@ int allcheck() {
         GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13) == 0 &&
         GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_15) == 0 &&
         GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0)
-        return 1;else return 0;
+        return 1;
+    else
+        return 0;
+}
+
+/**
+ * @description: put it into while(1)
+ * @return {*}
+ */
+void trackingTrack() {
+    if (data == '5') {
+        state = 0;
+        forward(0, 0);
+        while (data == '5') {
+            if (allcheck()) {
+                // switch (state) {
+                //     case 1:
+                //         /* code */
+                //         turnRight(10, 1, 0);
+                //         break;
+                //     case 2:
+                //         turnLeft(10, 1, 0);
+                //         break;
+                //     default:
+                //         forward(0, 0);
+                //         break;
+                // }
+                // // continue;
+                backoff(10,0);
+            } else {
+                if (Fellow_Left()) continue;
+                if (Fellow_Right()) continue;
+                if (Fellow_Left_mid()) continue;
+                if (Fellow_Right_mid()) continue;
+
+                forward(0, 0);
+                wait(8);
+                GPIO_ResetBits(GPIOB, GPIO_Pin_5);
+                // stop();
+                wait(8);
+            }
+        }
+    }
 }
