@@ -8,6 +8,8 @@
 #include "trackingTrack.h"
 #include "usart.h"
 #include "btControl.h"
+#include "ultrasonic.h"
+#include "delay.h"
 
 /*?????????????*/
 /**
@@ -20,6 +22,9 @@ void myInit(void) {
     InfSensor_Init();
     Follow_InfSensor_Init();
     btControlInit();
+    ultrasonic_init();
+    delay_init();
+    USART1_init();      //´®¿Ú1³õÊ¼»¯
     data = '4';
 }
 
@@ -31,6 +36,12 @@ int main(void) {
         btControl();
         InfraredSensor();
         trackingTrack();
+        ultrasonic();
+
     }
+    // while(1){
+
+
+    // }
 
 }

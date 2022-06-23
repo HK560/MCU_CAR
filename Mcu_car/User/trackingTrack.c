@@ -37,7 +37,7 @@ int Fellow_Right() {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) {
         stop();
         // turnRight(10, 0);
-        turnLeft(10, 1, 0);
+        turnLeft(20, 1, 0);
         // forward(0);
         state = 1;
         return 1;
@@ -53,7 +53,7 @@ int Fellow_Left() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_15) == 1) {
         stop();
         // turnLeft(10,0);
-        turnRight(10, 1, 0);
+        turnRight(20, 1, 0);
         // forward(0);
         state = 2;
         return 1;
@@ -69,7 +69,7 @@ int Fellow_Right_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13) == 0) {
         stop();
 
-        turnRight(10, 1, 0);
+        turnRight(20, 1, 0);
         // forward(0);
         // state =2;
         return 1;
@@ -84,7 +84,7 @@ int Fellow_Right_mid() {
 int Fellow_Left_mid() {
     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14) == 0) {
         stop();
-        turnLeft(10, 1, 0);
+        turnLeft(20, 1, 0);
         // forward(0);
         // state =1;
         return 1;
@@ -125,7 +125,7 @@ void trackingTrack() {
                 //         break;
                 // }
                 // // continue;
-                backoff(10,0);
+                backoff(500,0);
             } else {
                 if (Fellow_Left()) continue;
                 if (Fellow_Right()) continue;
@@ -133,10 +133,10 @@ void trackingTrack() {
                 if (Fellow_Right_mid()) continue;
 
                 forward(0, 0);
-                wait(8);
-                GPIO_ResetBits(GPIOB, GPIO_Pin_5);
-                // stop();
-                wait(8);
+                // wait(8);
+                // GPIO_ResetBits(GPIOB, GPIO_Pin_5);
+                // // stop();
+                // wait(8);
             }
         }
     }
