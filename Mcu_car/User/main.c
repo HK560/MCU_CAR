@@ -37,8 +37,6 @@ void myInit(void) {
     data = '4'; //默认模式
 }
 
-
-
 /**
  * @brief: 主函数
  * @description: 

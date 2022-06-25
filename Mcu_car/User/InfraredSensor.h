@@ -11,4 +11,5 @@ void InfSensor_Init(void);
 int encounterObstaclesLeft(void);
 int encounterObstaclesRight(void);
 void InfraredSensor(void);
+
 #endif
