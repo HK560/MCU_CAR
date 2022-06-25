@@ -1,4 +1,5 @@
 
+
 #include "InfraredSensor.h"
 #include "SysTick.h"
 #include "move.h"
@@ -13,38 +14,45 @@
 
 
 /*
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª     2022.6.23          ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª   ¹ãÖÝ´óÑ§¼Æ¿Æ194     ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª   ÖÇÄÜÐ¡³µ¿Î³ÌÉè¼Æ    ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª   µÚ52ºÅÐ¡³µÐ¡×é      ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”     2022.6.23          â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”   å¹¿å·žå¤§å­¦è®¡ç§‘194     â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”   æ™ºèƒ½å°è½¦è¯¾ç¨‹è®¾è®¡    â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”   ç¬¬52å·å°è½¦å°ç»„      â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
 */
 
 
 /**
- * @brief ×Ô¶¨Òå³õÊ¼»¯º¯Êý
+ * @brief è‡ªå®šä¹‰åˆå§‹åŒ–å‡½æ•°
  * @return {*}
  */
 void myInit(void) {
-    Moto_Init();  //????????
-    SysTick_Init(72);
-    InfSensor_Init();
-    Follow_InfSensor_Init();
-    btControlInit();
-    ultrasonic_init();
-    delay_init();
-    USART1_init();      //´®¿Ú1³õÊ¼»¯
-    data = '4';
+    Moto_Init(); //ç”µæœºåˆå§‹åŒ–
+    SysTick_Init(72); //æ—¶é’Ÿåˆå§‹åŒ–
+    InfSensor_Init();// çº¢å¤–ä¼ æ„Ÿå™¨åˆå§‹åŒ–
+    Follow_InfSensor_Init();//å¾ªè¿¹ä¼ æ„Ÿå™¨åˆå§‹åŒ–
+    btControlInit(); //è“ç‰™åˆå§‹åŒ–
+    ultrasonic_init(); //è¶…å£°æ³¢ä¼ æ„Ÿå™¨æ£€æµ‹
+    delay_init();//å»¶è¿Ÿå‡½æ•°æ£€æµ‹
+    USART1_init();//usartåˆå§‹åŒ–
+    data = '4'; //é»˜è®¤æ¨¡å¼
 }
 
+
+
+/**
+ * @brief: ä¸»å‡½æ•°
+ * @description: 
+ * @return {*}
+ */
 int main(void) {
     
     myInit();
     while (1)
     {   
-        btControl();//À¶ÑÀ¿ØÖÆ·½Ïò
-        InfraredSensor();//±ÜÕÏ¼ì²â
-        trackingTrack();//Ñ­¼£
-        ultrasonic();//³¬Éù²¨¼ì²â
+        btControl();//è“ç‰™æŽ§åˆ¶æ–¹å‘
+        InfraredSensor();//é¿éšœæ£€æµ‹
+        trackingTrack();//å¾ªè¿¹
+        ultrasonic();//è¶…å£°æ³¢æ£€æµ‹
 
     }
 }
